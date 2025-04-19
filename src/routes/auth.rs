@@ -15,7 +15,8 @@ use crate::utils::hasher::{hash_password, verify_password};
   responses(
       (status = 200, description = "User registered successfully", body = AuthResponse),
       (status = 400, description = "Registration failed", body = AuthResponse)
-  )
+  ),
+  security()
 )]
 async fn register(
   State(pool): State<PgPool>,
@@ -68,7 +69,8 @@ async fn register(
   responses(
       (status = 200, description = "Login successful", body = AuthResponse),
       (status = 401, description = "Login failed", body = AuthResponse)
-  )
+  ),
+  security()
 )]
 async fn login(
   State(pool): State<PgPool>,

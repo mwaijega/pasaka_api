@@ -1,5 +1,7 @@
 use utoipa::OpenApi;
 
+
+
 pub mod auth;
 pub mod bible;
 
@@ -28,15 +30,31 @@ pub mod bible;
             crate::models::user::LoginUser,
             crate::models::user::UserResponse,
             crate::models::user::AuthResponse,
-        )
+        ),   
     ),
     info(
         title = "Pasaka Swahili Bible API",
         version = "1.0.0",
-        description = "🚀 **The Pasaka Swahili Bible API That’s Faster Than Your Wi-Fi** 💨📖\n\nYou know how sometimes you need something so fast, it feels like it’s already done before you even ask? Well, that's what this Swahili Bible API feels like! ⚡ Whether you’re building an app, a website, or just need the Bible in your project at the speed of light, we've got you covered. It's like a Bible, but faster than you can say 'Mwanzo' and without any holy lag! ⏱️\n\n**Why is it soooo fast?**\n\n📚 **Blink-and-you-miss-it Speed:** Get any verse, chapter, or book from the Swahili Bible quicker than you can open your coffee mug in the morning.\n\n🔍 **Need something specific?** Search results pop up like magic 🧙‍♂️. You won’t even know what hit you.\n\n🌍 **Swahili, Everywhere:** It's not just fast it’s super Swahili-friendly for everyone who wants the Word in their own language.\n\n⚡ **Ultra-Optimized:** If you like smooth, responsive apps, this is your new best friend. It’s fast enough to make your grandma say, 'Wow, that’s fast!' 😮\n\nNo more waiting for Bible verses. No more endless scrolling. Just pure, unadulterated, ultra-speedy Bible goodness right when you need it. 🚀\n\nSo, get ready to elevate your app with the ultra-fast, ultra-smooth, ultra-awesome Swahili Bible API. It's a divine experience in speed and simplicity. 🙌"
-    ),
+        description = r#"
+
+    
+    ### 📦 Note:  Use the API via `curl` for testing  add -H and your api
+    
+    > You can test without Swagger using the command below. Just remember to add your `x-api-key`.
+    
+    ```bash
+    curl -H "x-api-key: pasaka_api_7a782fcd-da06-4558-xxxxx" \
+    https://pasaka.4insec.com/books/
+
+    ```
+    ---
+    and how is fast 🤫🤫 just test it...
+    "#),
     security(
         ("api_key" = [])
     ),
-)]
+
+
+
+ )]
 pub struct ApiDoc;
