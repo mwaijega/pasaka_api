@@ -114,6 +114,6 @@ async fn login(
 
 pub fn routes() -> Router<PgPool> {
   Router::new()
-      .route("/register", post(register))
-      .route("/login", post(login))
+      .route("/api/auth/register", post(register))
+      .route("/api/auth/login", post(login))
 }

@@ -52,8 +52,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
  
     let app = Router::new()
       .merge(swagger_ui)
-      .nest("/api/bible", secured_bible_routes)
-      .nest("/api/auth", auth_routes)
+      .merge(secured_bible_routes)
+      .merge(auth_routes)
       .layer(cors)
       .with_state(shared_state);
 
