@@ -38,9 +38,9 @@ pub mod bible;
         description = r#"
 
     
-    ### 📦 Note:  Use the API via `curl` for testing  add -H and your api
+   📦 Note:  Use the API via `curl` for testing  add -H and your api
     
-    > You can test without Swagger using the command below. Just remember to add your `x-api-key`.
+    You can test without Swagger using the command below. Just remember to add your `x-api-key`.
     
     ```bash
     curl -H "x-api-key: pasaka_api_7a782fcd-da06-4558-xxxxx" \
