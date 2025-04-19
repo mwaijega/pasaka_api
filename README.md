@@ -116,15 +116,10 @@ We welcome PRs, ideas, and contributions!
 
 
 
-🪪 License
+🪪 [Licence](./LICENCE)
 
 This project is open-source and available under the **Jesus License**.
 
 
 
-> Made with ❤️ to spread the Word — quickly.
-```
-
----
-
-Let me know if you'd like a section on deploying or generating your own API key. I can also prep this for GitHub Pages or add badges (build passing, version, etc.)!
+> Made with ❤️ to spread the Word quickly.
