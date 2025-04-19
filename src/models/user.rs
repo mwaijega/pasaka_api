@@ -9,6 +9,7 @@ pub struct User {
   pub email: String,
   pub password_hash: String,
   pub api_key: String,
+  #[serde(with = "chrono::serde::ts_seconds")]
   pub created_at: chrono::DateTime<chrono::Utc>,
 }
 
@@ -16,14 +17,12 @@ pub struct User {
 pub struct RegisterUser {
   pub email: String,
   pub password: String,
-
 }
 
 #[derive(Debug,Deserialize,ToSchema)]
 pub struct LoginUser {
   pub email: String,
   pub password: String,
-  
 }
 
 #[derive(Debug,Serialize,ToSchema)]
@@ -31,7 +30,6 @@ pub struct UserResponse{
   pub id: i32,
   pub email: String,
   pub api_key: String,
-
 }
 
 #[derive(Debug,Serialize,ToSchema)]
@@ -43,8 +41,7 @@ pub struct AuthResponse{
 
 impl User{
   pub fn generate_api_key() -> String{
-    
-    format!("safina_{}",Uuid::new_v4().to_string())
+    format!("safina_{}", Uuid::new_v4())
   }
 
   pub fn to_response(&self) -> UserResponse{
@@ -55,7 +52,3 @@ impl User{
     }
   }
 }
-
-
-
-

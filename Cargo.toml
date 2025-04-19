@@ -6,15 +6,15 @@ edition = "2024"
 [dependencies]
 argon2 = "0.5.3"
 axum = "0.8.3"
-chrono = "0.4.40"
+chrono = { version = "0.4.40", features = ["serde"] }
 dotenvy = "0.15.7"
 hyper = "1.6.0"
 rand = "0.9.1"
 serde = { version = "1.0.219", features = ["derive"] }
 serde_json = "1.0.140"
-sqlx = { version = "0.8.5", features = ["postgres", "macros", "runtime-tokio-rustls","chrono"] }
+sqlx = { version = "0.8.5", features = ["postgres", "macros", "runtime-tokio-rustls", "chrono"] }
 tokio = { version = "1.44.2", features = ["full"] }
 tower-http = { version = "0.6.2", features = ["cors"] }
 utoipa = "5.3.1"
 utoipa-swagger-ui = { version = "9.0.1", features = ["axum"] }
-uuid = { version = "1.16.0", features = ["serde"] }
+uuid = { version = "1.16.0", features = ["serde", "v4"] }

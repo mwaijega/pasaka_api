@@ -1,14 +1,12 @@
 use axum::{
   extract::{Path,State},
   routing::{get,post},
-  Json,Router,
+  Json,Router, 
 };
 use serde_json::Value;
 use sqlx::PgPool;
 use std::sync::Arc;
-use utoipa::OpenApi;
 use std::fs;
-
 
 use crate::models::bible::{
   BibleResponse,
@@ -21,15 +19,14 @@ use crate::models::bible::{
   ErrorResponse
 };
 
-use crate::utils::auth::require_api_key;
 
-struct BibleData {
+
+pub struct BibleData {
   books: Vec<Book>,
-
 }
 
 impl BibleData {
-  fn load() -> Result<Self,Box<dyn std::error::Error>> {
+  pub fn load() -> Result<Self,Box<dyn std::error::Error>> {
     let file_path ="src/data/swahili_bible.json";
     let data = fs::read_to_string(file_path)?;
 
@@ -60,12 +57,9 @@ impl BibleData {
             });
           }
         }
-
       }
     }
     results
-
-
   }
 }
 
@@ -168,10 +162,7 @@ async fn get_chapter(
     "success":false,
     "error":format!("Book '{}' not found",book_id)
   }))
-
-
 }
-
 
 #[utoipa::path(
   get,
@@ -223,8 +214,6 @@ async fn get_verse(
   }))
 }
 
-
-
 #[utoipa::path(
   post,
   path = "/search",
@@ -250,23 +239,11 @@ async fn search_bible(
   })
 }
 
-pub fn routes() -> Router<Arc<(PgPool, BibleData)>> {
-  
-  let bible_data = match BibleData::load() {
-    Ok(data) => data,
-    Err(e) => {
-      eprintln!("Failed to load Bible data: {}", e);
-      panic!("Could not initialize Bible data");
-    }
-
-      
-  };
+pub fn routes() -> Router<AppState> {
   Router::new()
     .route("/books", get(get_books))
-    .route("/books/:book_id", get(get_book))
-    .route("/books/:book_id/:chapter", get(get_chapter))
-    .route("/books/:book_id/:chapter/:verse", get(get_verse))
+    .route("/books/{book_id}", get(get_book))          
+    .route("/books/{book_id}/{chapter}", get(get_chapter)) 
+    .route("/books/{book_id}/{chapter}/{verse}", get(get_verse))  
     .route("/search", post(search_bible))
-    .layer(require_api_key())
-
 }

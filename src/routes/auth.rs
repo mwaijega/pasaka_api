@@ -4,10 +4,9 @@ use axum::{
   Json, Router,
 };
 use sqlx::PgPool;
-use utoipa::OpenApi;
 
-use crate::models::user::{AuthResponse, LoginUser, RegisterUser, User, UserResponse};
-use crate::utils::hasher::{hash_password,verify_password};
+use crate::models::user::{AuthResponse, LoginUser, RegisterUser, User};
+use crate::utils::hasher::{hash_password, verify_password};
 
 #[utoipa::path(
   post,
@@ -112,7 +111,6 @@ async fn login(
       }
   }
 }
-
 
 pub fn routes() -> Router<PgPool> {
   Router::new()

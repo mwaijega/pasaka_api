@@ -17,15 +17,15 @@ pub struct Book {
   pub chapters: Vec<Chapter>,
 }
 
-#[derive(Debug,Serialize,Deserialize,ToSchema)]
+#[derive(Debug,Clone,Serialize,Deserialize,ToSchema)]
 pub struct Chapter {
   #[serde(rename="chapter_number")]
   pub chapter: String,
   #[serde(rename="VERSES")]
   pub verses: Vec<Verse>,
-
 }
-#[derive(Debug, Serialize, Deserialize, ToSchema)]
+
+#[derive(Debug,Clone,Serialize,Deserialize,ToSchema)]
 pub struct Verse {
     #[serde(rename = "verse_number")]
     pub verse: String,
@@ -45,7 +45,6 @@ pub struct SearchResult{
 pub struct BibleResponse<T>{
   pub success: bool,
   pub data: T,
-
 }
 
 #[derive(Debug,Serialize,ToSchema)]
