@@ -241,9 +241,9 @@ async fn search_bible(
 
 pub fn routes() -> Router<AppState> {
   Router::new()
-    .route("/api/bible/books", get(get_books))
-    .route("/api/bible/books/{book_id}", get(get_book))          
-    .route("/api/bible/books/{book_id}/{chapter}", get(get_chapter)) 
-    .route("/api/bible/books/{book_id}/{chapter}/{verse}", get(get_verse))  
-    .route("/api/bible/search", post(search_bible))
+    .route("/books", get(get_books))
+    .route("/books/{book_id}", get(get_book))          
+    .route("/books/{book_id}/{chapter}", get(get_chapter)) 
+    .route("/books/{book_id}/{chapter}/{verse}", get(get_verse))  
+    .route("/search", post(search_bible))
 }
