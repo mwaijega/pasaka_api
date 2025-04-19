@@ -34,16 +34,16 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     };
 
-    // Create a shared state containing pool and bible_data
+    
     let shared_state = Arc::new((pool.clone(), bible_data));
 
-    // Auth routes with just the pool
+   
     let auth_routes = routes::auth::routes().with_state(pool.clone());
     
-    // Bible routes with the shared state
+  
     let bible_routes = routes::bible::routes();
     
-    // Apply the middleware to the Bible routes
+ 
     let secured_bible_routes = bible_routes
         .layer(middleware::from_fn_with_state(shared_state.clone(), utils::auth::require_api_key));
     

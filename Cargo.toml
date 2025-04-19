@@ -1,7 +1,9 @@
 [package]
-name = "swahili-bible-api"
+name = "pasaka-api"
 version = "0.1.0"
+author = ["Kelvin Mwaijega <mwaijegakelvin@gmail.com>"]
 edition = "2024"
+
 
 [dependencies]
 argon2 = "0.5.3"

@@ -41,7 +41,7 @@ pub struct AuthResponse{
 
 impl User{
   pub fn generate_api_key() -> String{
-    format!("safina_{}", Uuid::new_v4())
+    format!("pasaka_api_{}", Uuid::new_v4())
   }
 
   pub fn to_response(&self) -> UserResponse{
