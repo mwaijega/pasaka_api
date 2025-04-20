@@ -36,20 +36,15 @@ pub mod bible;
         title = "Pasaka Swahili Bible API",
         version = "1.0.0",
         description = r#"
-
-    
-   📦 Note:  Use the API via `curl` for testing  add -H and your api
-    
-    You can test without Swagger using the command below. Just remember to add your `x-api-key`.
-    
-    ```bash
-    curl -H "x-api-key: pasaka_api_7a782fcd-da06-4558-xxxxx" \
-    https://pasaka.4insec.com/books/
-
-    ```
-    ---
-    and how is fast 🤫🤫 just test it...
-    "#),
+        📦 Note:  Use the API via `curl` for testing, add -H and your API key.
+        
+        You can test without Swagger using the command below. Just remember to add your `x-api-key`.
+        
+        ```bash
+        curl -H "x-api-key: pasaka_api_7a782fcd-da06-4558-xxxxx" \
+        https://pasaka.4insec.com/books/
+        ```
+        and how is fast 🤫🤫 just test it... "#),
     security(
         ("api_key" = [])
     ),
