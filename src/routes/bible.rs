@@ -18,6 +18,9 @@ use crate::models::bible::{
   Verse,
   ErrorResponse
 };
+use axum::extract::Query;
+use std::collections::HashMap;
+use serde_json::json;
 
 
 
@@ -78,14 +81,35 @@ type AppState = Arc<(PgPool, BibleData)>;
   )
 )]
 
-async fn get_books(State(state):State<AppState>,) -> Json<BibleResponse<Vec<Book>>>{
-  let bible_data =&state.1;
+async fn get_books(
+  State(state): State<AppState>,
+  Query(params): Query<HashMap<String, String>>,
+) -> Json<BibleResponse<Value>> {
+  let bible_data = &state.1;
+  let full = params.get("full").map(|v| v == "true").unwrap_or(false);
 
-  Json(BibleResponse{
-    success: true,
-    data:bible_data.get_books().clone(),
-  })
+  if full {
+      Json(BibleResponse {
+          success: true,
+          data: serde_json::to_value(bible_data.get_books()).unwrap(),
+      })
+  } else {
+     
+      let simple_books: Vec<_> = bible_data.get_books().iter()
+          .map(|b| {
+              json!({
+                  "id": b.id,
+                  "name": b.name,
+              })
+          }).collect();
+
+      Json(BibleResponse {
+          success: true,
+          data: json!(simple_books),
+      })
+  }
 }
+
 
 #[utoipa::path(
   get,

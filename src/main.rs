@@ -4,6 +4,7 @@ use sqlx::{postgres::PgPoolOptions};
 use std::env;
 use std::sync::Arc;
 use tower_http::cors::{Any, CorsLayer};
+use tower_http::compression::CompressionLayer;
 use utoipa::OpenApi;
 use utoipa_swagger_ui::SwaggerUi;
 
@@ -55,6 +56,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
       .merge(secured_bible_routes)
       .merge(auth_routes)
       .layer(cors)
+      .layer(CompressionLayer::new())
       .with_state(shared_state);
 
     let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
