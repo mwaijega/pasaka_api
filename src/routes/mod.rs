@@ -35,16 +35,28 @@ pub mod bible;
     info(
         title = "Pasaka Swahili Bible API",
         version = "1.0.0",
-        description = r#"
+        description = "
         📦 Note:  Use the API via `curl` for testing, add -H and your API key.
         
         You can test without Swagger using the command below. Just remember to add your `x-api-key`.
         
         ```bash
-        curl -H "x-api-key: pasaka_api_7a782fcd-da06-4558-xxxxx" \
-        https://pasaka.4insec.com/books/
+        curl -H \"x-api-key: pasaka_api_7a782fcd-da06-4558-xxxxx\" \
+        https://pasaka.4insec.com/books
         ```
-        and how is fast 🤫🤫 just test it... "#),
+        note that i dont put `/` at the end of the url, because it will not work.
+
+        so let look another example 
+        
+        want whole firstbook, it will be like this 
+        ```bash
+        curl -H \"x-api-key: pasaka_api_7a782fcd-da06-4558-xxxxx\" \
+        https://pasaka.4insec.com/books/1
+        ```
+        again notice that i dont put `/` at the end of the url, because it will not work. 
+
+
+        and how is fast 🤫🤫 just test it... "),
     security(
         ("api_key" = [])
     ),
